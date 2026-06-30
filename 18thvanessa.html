@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 18th, Vanessa 🎀</title>
+<style>
+  :root{
+    --cream: #FFF6F4;
+    --blush: #F7CADA;
+    --rose: #E08FAF;
+    --deep-rose: #C46A8E;
+    --mauve-text: #6B4257;
+    --gold: #CDA15B;
+    --white: #FFFFFF;
+    --line: rgba(196,106,142,0.25);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  body{
+    background:
+      radial-gradient(ellipse at 15% 0%, #FFE9F0 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 20%, #FCE3EC 0%, transparent 45%),
+      var(--cream);
+    color: var(--mauve-text);
+    font-family: Georgia, 'Times New Roman', serif;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ---- floating petals ---- */
+  .petal{
+    position: fixed;
+    top: -40px;
+    pointer-events: none;
+    opacity: 0.7;
+    z-index: 1;
+    animation: fall linear infinite;
+  }
+  @keyframes fall{
+    to{ transform: translateY(110vh) rotate(360deg); }
+  }
+
+  section{
+    position: relative;
+    z-index: 2;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 90px 24px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 40px;
+  }
+  .eyebrow{
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--deep-rose);
+    margin-bottom: 18px;
+  }
+  .bow-icon{ width: 70px; height: auto; margin: 0 auto 22px; display:block; }
+  h1.hero-name{
+    font-family: 'Brush Script MT', 'Segoe Script', cursive;
+    font-size: clamp(64px, 13vw, 130px);
+    line-height: 0.95;
+    color: var(--deep-rose);
+    text-shadow: 0 2px 0 rgba(255,255,255,0.6);
+  }
+  .hero-sub{
+    font-size: clamp(20px, 3vw, 28px);
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 6px;
+    color: var(--mauve-text);
+  }
+  .hero-eighteen{
+    margin-top: 28px;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .ribbon-divider{
+    width: 100%;
+    max-width: 320px;
+    margin: 50px auto 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .ribbon-divider .line{
+    flex:1;
+    height:1px;
+    background: linear-gradient(90deg, transparent, var(--rose), transparent);
+  }
+  .ribbon-divider svg{ width: 22px; height: 22px; flex-shrink:0; }
+
+  /* ---------- LETTER ---------- */
+  .letter{
+    text-align: center;
+  }
+  .letter p{
+    font-size: 21px;
+    line-height: 1.85;
+    color: var(--mauve-text);
+    max-width: 680px;
+    margin: 0 auto 18px;
+  }
+  .letter .signoff{
+    margin-top: 30px;
+    font-family: 'Brush Script MT', 'Segoe Script', cursive;
+    font-size: 34px;
+    color: var(--deep-rose);
+  }
+
+  .section-title{
+    text-align: center;
+    font-family: 'Brush Script MT', 'Segoe Script', cursive;
+    font-size: clamp(42px, 6vw, 58px);
+    color: var(--deep-rose);
+    margin-bottom: 6px;
+  }
+  .section-kicker{
+    text-align: center;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .section-desc{
+    text-align:center;
+    max-width: 560px;
+    margin: 0 auto 56px;
+    font-size: 18px;
+    color: var(--mauve-text);
+    opacity: 0.85;
+  }
+
+  /* ---------- MEMORIES (polaroids) ---------- */
+  .polaroid-board{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 36px 28px;
+  }
+  .polaroid{
+    background: var(--white);
+    padding: 14px 14px 50px;
+    box-shadow: 0 10px 24px rgba(196,106,142,0.18), 0 2px 6px rgba(0,0,0,0.04);
+    position: relative;
+    transform: rotate(var(--r, -2deg));
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .polaroid:nth-child(2n){ --r: 2deg; }
+  .polaroid:nth-child(3n){ --r: -1.5deg; }
+  .polaroid:nth-child(4n){ --r: 1.5deg; }
+  .polaroid:hover{
+    transform: rotate(0deg) translateY(-6px) scale(1.03);
+    box-shadow: 0 18px 30px rgba(196,106,142,0.28);
+    z-index: 5;
+  }
+  .polaroid .frame{
+    aspect-ratio: 1/1;
+    background: linear-gradient(135deg, #FBE3EC, #F6CFDF);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--rose);
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    text-align:center;
+    padding: 10px;
+  }
+  .polaroid .tape{
+    position:absolute;
+    top:-12px; left:50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 64px; height: 24px;
+    background: rgba(247,202,218,0.7);
+    border: 1px solid rgba(196,106,142,0.25);
+  }
+  .polaroid .caption{
+    position:absolute;
+    bottom: 14px; left:0; right:0;
+    text-align:center;
+    font-family: 'Brush Script MT', 'Segoe Script', cursive;
+    font-size: 22px;
+    color: var(--deep-rose);
+  }
+  .polaroid.add-more .frame{
+    background: transparent;
+    border: 2px dashed var(--rose);
+    color: var(--rose);
+  }
+
+  /* ---------- CHARM BRACELET / MOOD VERSES ---------- */
+  .charms{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 46px;
+  }
+  .charm{
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--deep-rose);
+    background: var(--white);
+    border: 1.5px solid var(--rose);
+    padding: 12px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display:flex;
+    align-items:center;
+    gap: 8px;
+  }
+  .charm svg{ width: 16px; height:16px; }
+  .charm:hover, .charm.active{
+    background: var(--rose);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(224,143,175,0.35);
+  }
+
+  .verse-card{
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 48px 40px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 14px 36px rgba(196,106,142,0.14);
+    min-height: 220px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    transition: opacity 0.3s ease;
+  }
+  .verse-card .mood-label{
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .verse-card .verse-text{
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--mauve-text);
+    max-width: 560px;
+  }
+  .verse-card .verse-ref{
+    margin-top: 14px;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--deep-rose);
+    letter-spacing: 0.05em;
+  }
+  .verse-card .quote-divider{
+    width: 40px; height: 1px;
+    background: var(--rose);
+    margin: 26px 0;
+  }
+  .verse-card .life-quote{
+    font-family: 'Brush Script MT', 'Segoe Script', cursive;
+    font-size: 28px;
+    color: var(--deep-rose);
+    max-width: 520px;
+  }
+  .song-chip{
+    margin-top: 22px;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--mauve-text);
+    background: rgba(247,202,218,0.5);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .another-btn{
+    margin-top: 30px;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rose);
+    background: transparent;
+    border: 1px solid var(--rose);
+    border-radius: 999px;
+    padding: 9px 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .another-btn:hover{
+    background: var(--rose);
+    color: var(--white);
+  }
+
+  /* ---------- CHINA SECTION ---------- */
+  .china{
+    background: linear-gradient(180deg, transparent, rgba(247,202,218,0.35) 15%, rgba(247,202,218,0.35) 85%, transparent);
+  }
+  .china-inner{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+  @media (max-width: 720px){
+    .china-inner{ grid-template-columns: 1fr; }
+  }
+  .china-art{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .china-art svg{ width: 100%; max-width: 280px; height:auto; }
+  .china-text h3{
+    font-family: 'Brush Script MT', 'Segoe Script', cursive;
+    font-size: 40px;
+    color: var(--deep-rose);
+    margin-bottom: 16px;
+  }
+  .china-text p{
+    font-size: 19px;
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .china-text .stamp{
+    display:inline-block;
+    margin-top: 18px;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--deep-rose);
+    padding: 10px 18px;
+    border-radius: 999px;
+  }
+
+  footer{
+    text-align:center;
+    padding: 60px 24px 80px;
+    position: relative;
+    z-index: 2;
+  }
+  footer .bow-icon{ width: 44px; opacity: 0.8; }
+  footer p{
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-top: 14px;
+  }
+</style>
+</head>
+<body>
+
+<!-- floating petals -->
+<svg style="display:none">
+  <symbol id="bow" viewBox="0 0 100 60">
+    <path d="M50 30 C40 10, 10 10, 8 30 C10 50, 40 50, 50 30 Z" fill="currentColor"/>
+    <path d="M50 30 C60 10, 90 10, 92 30 C90 50, 60 50, 50 30 Z" fill="currentColor"/>
+    <circle cx="50" cy="30" r="7" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<div id="petals"></div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="eyebrow">A little corner of the internet, just for you</div>
+  <svg class="bow-icon" viewBox="0 0 100 60" style="color:var(--rose)"><use href="#bow"/></svg>
+  <h1 class="hero-name">Vanessa</h1>
+  <p class="hero-sub">is turning eighteen</p>
+  <p class="hero-eighteen">✦ happy 18th birthday ✦</p>
+
+  <div class="ribbon-divider">
+    <span class="line"></span>
+    <svg viewBox="0 0 100 60" style="color:var(--gold)"><use href="#bow"/></svg>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ===================== LETTER ===================== -->
+<section class="letter">
+  <p>Eighteen looks so good on you. From here, the world gets a little bigger, the choices a little more yours, and the chapters a little more exciting — and we couldn't be happier that you get to write the next one.</p>
+  <p>This little page is for all of it: the memories we've already made, the words to carry with you, and the new adventure waiting for you in China.</p>
+  <p class="signoff">with all our love</p>
+</section>
+
+<!-- ===================== MEMORIES ===================== -->
+<section id="memories">
+  <div class="section-kicker">flip through</div>
+  <h2 class="section-title">Our Memories</h2>
+  <p class="section-desc">A few favorites to start — send over your photos and this wall will keep growing. 🎀</p>
+
+  <div class="polaroid-board">
+    <div class="polaroid">
+      <div class="tape"></div>
+      <div class="frame">add a photo here ✨</div>
+      <div class="caption">the first time</div>
+    </div>
+    <div class="polaroid">
+      <div class="tape"></div>
+      <div class="frame">add a photo here 🎀</div>
+      <div class="caption">us, always</div>
+    </div>
+    <div class="polaroid">
+      <div class="tape"></div>
+      <div class="frame">add a photo here 💌</div>
+      <div class="caption">that one trip</div>
+    </div>
+    <div class="polaroid">
+      <div class="tape"></div>
+      <div class="frame">add a photo here 🌸</div>
+      <div class="caption">silly faces</div>
+    </div>
+    <div class="polaroid">
+      <div class="tape"></div>
+      <div class="frame">add a photo here 🎂</div>
+      <div class="caption">a birthday past</div>
+    </div>
+    <div class="polaroid add-more">
+      <div class="frame">+ more memories<br>coming soon</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MOOD / VERSE GENERATOR ===================== -->
+<section id="verses">
+  <div class="section-kicker">for the days ahead</div>
+  <h2 class="section-title">Today, I Feel...</h2>
+  <p class="section-desc">Tap whatever fits today — you'll get a verse drawn from a whole little library for that feeling, plus something to carry with you.</p>
+
+  <div class="charms" id="charm-list"></div>
+
+  <div class="verse-card" id="verse-card">
+    <div class="mood-label" id="mood-label">Anxiety / Worry 😟</div>
+    <p class="verse-text" id="verse-text"></p>
+    <div class="verse-ref" id="verse-ref"></div>
+    <div class="quote-divider"></div>
+    <p class="life-quote" id="life-quote"></p>
+    <div class="song-chip" id="song-chip">🎵</div>
+    <button class="another-btn" id="another-btn">↻ show me another verse</button>
+  </div>
+</section>
+
+<!-- ===================== CHINA ===================== -->
+<section class="china">
+  <div class="china-inner">
+    <div class="china-art">
+      <svg viewBox="0 0 240 240" fill="none">
+        <circle cx="120" cy="120" r="100" stroke="#E08FAF" stroke-width="1.5" stroke-dasharray="4 6"/>
+        <path d="M50 150 Q120 60 190 150" stroke="#C46A8E" stroke-width="2" fill="none"/>
+        <path d="M150 110 L190 150 L150 145 Z" fill="#E08FAF"/>
+        <circle cx="60" cy="155" r="4" fill="#CDA15B"/>
+        <circle cx="190" cy="60" r="3" fill="#CDA15B"/>
+        <circle cx="200" cy="100" r="2.5" fill="#E08FAF"/>
+        <circle cx="40" cy="90" r="2.5" fill="#E08FAF"/>
+        <text x="120" y="190" text-anchor="middle" font-family="Brush Script MT, Segoe Script, cursive" font-size="26" fill="#C46A8E">go gently, go bravely</text>
+      </svg>
+    </div>
+    <div class="china-text">
+      <h3>Off to China, with love</h3>
+      <p>New city, new language on your tongue, new friends you haven't met yet — and a whole adventure waiting on the other side of the flight.</p>
+      <p>It's okay to miss home. It's okay to be nervous. It just means you're doing something brave.</p>
+      <p>Wherever you land, we're cheering for you — and we're only ever a message away.</p>
+      <span class="stamp">safe travels, Vanessa ✈</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <svg class="bow-icon" viewBox="0 0 100 60" style="color:var(--rose)"><use href="#bow"/></svg>
+  <p>made with love, for Vanessa's 18th</p>
+</footer>
+
+<script>
+  // ---- floating petals ----
+  const petalContainer = document.getElementById('petals');
+  const petalCount = 18;
+  for(let i=0;i<petalCount;i++){
+    const p = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    p.setAttribute('viewBox','0 0 20 20');
+    p.classList.add('petal');
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.width = (8 + Math.random()*10) + 'px';
+    p.style.animationDuration = (10 + Math.random()*12) + 's';
+    p.style.animationDelay = (Math.random()*12) + 's';
+    const colors = ['#F7CADA','#E08FAF','#FBE3EC','#CDA15B'];
+    p.style.color = colors[Math.floor(Math.random()*colors.length)];
+    p.innerHTML = '<circle cx="10" cy="10" r="6" fill="currentColor" opacity="0.6"/>';
+    petalContainer.appendChild(p);
+  }
+
+  // ---- mood / verse data ----
+  const categories = [
+    {
+      name: "Anxiety / Worry", emoji: "😟",
+      quote: "Breathe in courage, breathe out worry — one moment at a time.",
+      song: { title: "Anxiety", artist: "Julia Michaels & Selena Gomez" },
+      verses: [
+        { ref: "PHILIPPIANS 4:6–7", text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and minds." },
+        { ref: "MATTHEW 6:25–34", text: "Do not worry about your life. Look at the birds of the air; they do not sow or reap, yet your heavenly Father feeds them. Are you not much more valuable than they?" },
+        { ref: "1 PETER 5:7", text: "Cast all your anxiety on him because he cares for you." },
+        { ref: "ISAIAH 41:10", text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you." },
+        { ref: "PSALM 55:22", text: "Cast your cares on the LORD and he will sustain you; he will never let the righteous be shaken." },
+        { ref: "JOHN 14:27", text: "Peace I leave with you; my peace I give you. Do not let your hearts be troubled and do not be afraid." },
+        { ref: "PSALM 94:19", text: "When anxiety was great within me, your consolation brought me joy." },
+        { ref: "ISAIAH 26:3", text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you." },
+        { ref: "PSALM 46:1", text: "God is our refuge and strength, an ever-present help in trouble." },
+        { ref: "HEBREWS 13:5–6", text: "Never will I leave you; never will I forsake you. So we say with confidence, the Lord is my helper; I will not be afraid." }
+      ]
+    },
+    {
+      name: "Fear", emoji: "😨",
+      quote: "Brave doesn't mean fearless. It means moving forward anyway.",
+      song: { title: "Brave", artist: "Sara Bareilles" },
+      verses: [
+        { ref: "ISAIAH 41:10", text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you." },
+        { ref: "JOSHUA 1:9", text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you wherever you go." },
+        { ref: "PSALM 23:4", text: "Even though I walk through the darkest valley, I will fear no evil, for you are with me." },
+        { ref: "PSALM 56:3–4", text: "When I am afraid, I put my trust in you. In God, whose word I praise, in God I trust and am not afraid." },
+        { ref: "DEUTERONOMY 31:6", text: "Be strong and courageous. Do not be afraid, for the LORD your God goes with you; he will never leave you nor forsake you." },
+        { ref: "2 TIMOTHY 1:7", text: "For God has not given us a spirit of fear, but of power, love, and a sound mind." },
+        { ref: "PSALM 27:1", text: "The LORD is my light and my salvation — whom shall I fear?" },
+        { ref: "ISAIAH 43:1–2", text: "Do not fear, for I have redeemed you; I have summoned you by name; you are mine." },
+        { ref: "ROMANS 8:15", text: "You did not receive a spirit that makes you a slave again to fear, but you received the Spirit of sonship." },
+        { ref: "PSALM 118:6", text: "The LORD is with me; I will not be afraid. What can mere mortals do to me?" }
+      ]
+    },
+    {
+      name: "Sadness / Grief", emoji: "😔",
+      quote: "Even the softest hearts can carry the heaviest days — and still bloom again.",
+      song: { title: "Someone You Loved", artist: "Lewis Capaldi" },
+      verses: [
+        { ref: "PSALM 34:18", text: "The LORD is close to the brokenhearted and saves those who are crushed in spirit." },
+        { ref: "PSALM 147:3", text: "He heals the brokenhearted and binds up their wounds." },
+        { ref: "MATTHEW 5:4", text: "Blessed are those who mourn, for they will be comforted." },
+        { ref: "JOHN 16:33", text: "In this world you will have trouble. But take heart! I have overcome the world." },
+        { ref: "REVELATION 21:4", text: "He will wipe every tear from their eyes. There will be no more death or mourning or crying or pain." },
+        { ref: "LAMENTATIONS 3:22–23", text: "Because of the LORD's great love we are not consumed, for his compassions never fail. They are new every morning." },
+        { ref: "2 CORINTHIANS 1:3–4", text: "The God of all comfort, who comforts us in all our troubles." },
+        { ref: "PSALM 30:5", text: "Weeping may stay for the night, but rejoicing comes in the morning." },
+        { ref: "ISAIAH 61:3", text: "To bestow on them a crown of beauty instead of ashes, the oil of joy instead of mourning." },
+        { ref: "ROMANS 8:18", text: "I consider that our present sufferings are not worth comparing with the glory that will be revealed in us." }
+      ]
+    },
+    {
+      name: "Anger", emoji: "😠",
+      quote: "Pause before you speak; peace is a quieter kind of power.",
+      song: { title: "Roar", artist: "Katy Perry" },
+      verses: [
+        { ref: "JAMES 1:19–20", text: "Everyone should be quick to listen, slow to speak and slow to become angry." },
+        { ref: "EPHESIANS 4:26–27", text: "In your anger do not sin: Do not let the sun go down while you are still angry." },
+        { ref: "PROVERBS 15:1", text: "A gentle answer turns away wrath, but a harsh word stirs up anger." },
+        { ref: "PROVERBS 16:32", text: "Better a patient person than a warrior, one with self-control than one who takes a city." },
+        { ref: "ECCLESIASTES 7:9", text: "Do not be quickly provoked in your spirit, for anger resides in the lap of fools." },
+        { ref: "COLOSSIANS 3:8", text: "Rid yourselves of all such things as these: anger, rage, malice, slander, and filthy language." },
+        { ref: "ROMANS 12:19", text: "Do not take revenge, my dear friends, but leave room for God's wrath." },
+        { ref: "PROVERBS 14:29", text: "Whoever is patient has great understanding, but one who is quick-tempered displays folly." },
+        { ref: "PSALM 37:8", text: "Refrain from anger and turn from wrath; do not fret — it leads only to evil." },
+        { ref: "EPHESIANS 4:31–32", text: "Get rid of all bitterness, rage and anger. Be kind and compassionate to one another, forgiving each other." }
+      ]
+    },
+    {
+      name: "Guilt / Shame", emoji: "😞",
+      quote: "Grace doesn't ask you to be perfect — just willing to begin again.",
+      song: { title: "Scars to Your Beautiful", artist: "Alessia Cara" },
+      verses: [
+        { ref: "1 JOHN 1:9", text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us." },
+        { ref: "ROMANS 8:1", text: "There is now no condemnation for those who are in Christ Jesus." },
+        { ref: "PSALM 51:10", text: "Create in me a pure heart, O God, and renew a steadfast spirit within me." },
+        { ref: "ISAIAH 1:18", text: "Though your sins are like scarlet, they shall be as white as snow." },
+        { ref: "PSALM 103:12", text: "As far as the east is from the west, so far has he removed our transgressions from us." },
+        { ref: "MICAH 7:18–19", text: "You will tread our sins underfoot and hurl all our iniquities into the depths of the sea." },
+        { ref: "HEBREWS 8:12", text: "I will forgive their wickedness and will remember their sins no more." },
+        { ref: "ROMANS 5:1", text: "Since we have been justified through faith, we have peace with God." },
+        { ref: "EPHESIANS 1:7", text: "In him we have redemption through his blood, the forgiveness of sins." },
+        { ref: "2 CORINTHIANS 5:17", text: "If anyone is in Christ, the new creation has come: The old has gone, the new is here!" }
+      ]
+    },
+    {
+      name: "Stress / Overwhelmed", emoji: "😩",
+      quote: "You don't have to carry it all today. Set some of it down.",
+      song: { title: "Breathin", artist: "Ariana Grande" },
+      verses: [
+        { ref: "MATTHEW 11:28–30", text: "Come to me, all you who are weary and burdened, and I will give you rest." },
+        { ref: "PSALM 46:10", text: "Be still, and know that I am God." },
+        { ref: "PHILIPPIANS 4:6–7", text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God." },
+        { ref: "ISAIAH 40:29–31", text: "He gives strength to the weary. Those who hope in the LORD will renew their strength." },
+        { ref: "PSALM 61:2", text: "From the ends of the earth I call to you, I call as my heart grows faint; lead me to the rock that is higher than I." },
+        { ref: "EXODUS 14:14", text: "The LORD will fight for you; you need only to be still." },
+        { ref: "PSALM 62:5–8", text: "Find rest, O my soul, in God alone; my hope comes from him." },
+        { ref: "NAHUM 1:7", text: "The LORD is good, a refuge in times of trouble. He cares for those who trust in him." },
+        { ref: "JOHN 16:33", text: "In this world you will have trouble. But take heart! I have overcome the world." },
+        { ref: "PSALM 121:1–2", text: "I lift up my eyes to the mountains — where does my help come from? My help comes from the LORD." }
+      ]
+    },
+    {
+      name: "Doubt / Uncertainty", emoji: "😕",
+      quote: "You don't have to see the whole staircase, just take the first step.",
+      song: { title: "Confident", artist: "Demi Lovato" },
+      verses: [
+        { ref: "PROVERBS 3:5–6", text: "Trust in the LORD with all your heart and lean not on your own understanding." },
+        { ref: "JAMES 1:5", text: "If any of you lacks wisdom, you should ask God, who gives generously to all." },
+        { ref: "JEREMIAH 29:11", text: "For I know the plans I have for you, declares the LORD, plans to prosper you and not to harm you, plans to give you hope and a future." },
+        { ref: "PSALM 32:8", text: "I will instruct you and teach you in the way you should go." },
+        { ref: "ROMANS 8:28", text: "And we know that in all things God works for the good of those who love him." },
+        { ref: "ISAIAH 30:21", text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, 'This is the way; walk in it.'" },
+        { ref: "PSALM 119:105", text: "Your word is a lamp for my feet, a light on my path." },
+        { ref: "HEBREWS 11:1", text: "Now faith is confidence in what we hope for and assurance about what we do not see." },
+        { ref: "MARK 9:24", text: "I do believe; help me overcome my unbelief!" },
+        { ref: "JOHN 20:29", text: "Blessed are those who have not seen and yet have believed." }
+      ]
+    },
+    {
+      name: "Weakness / Discouragement", emoji: "💪",
+      quote: "Even on your weakest days, you're still standing — and that counts.",
+      song: { title: "Fight Song", artist: "Rachel Platten" },
+      verses: [
+        { ref: "ISAIAH 40:31", text: "Those who hope in the LORD will renew their strength. They will soar on wings like eagles." },
+        { ref: "2 CORINTHIANS 12:9", text: "My grace is sufficient for you, for my power is made perfect in weakness." },
+        { ref: "JOSHUA 1:9", text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you wherever you go." },
+        { ref: "PSALM 31:24", text: "Be strong and take heart, all you who hope in the LORD." },
+        { ref: "ROMANS 15:13", text: "May the God of hope fill you with all joy and peace as you trust in him." },
+        { ref: "GALATIANS 6:9", text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up." },
+        { ref: "NEHEMIAH 8:10", text: "The joy of the LORD is your strength." },
+        { ref: "PSALM 27:14", text: "Wait for the LORD; be strong and take heart and wait for the LORD." },
+        { ref: "HEBREWS 12:1–3", text: "Let us run with perseverance the race marked out for us." },
+        { ref: "PHILIPPIANS 4:13", text: "I can do all this through him who gives me strength." }
+      ]
+    },
+    {
+      name: "Joy / Gratitude", emoji: "😊",
+      quote: "Let today be the kind you remember.",
+      song: { title: "Good as Hell", artist: "Lizzo" },
+      verses: [
+        { ref: "PHILIPPIANS 4:4", text: "Rejoice in the Lord always. I will say it again: Rejoice!" },
+        { ref: "PSALM 16:11", text: "You make known to me the path of life; you will fill me with joy in your presence." },
+        { ref: "1 THESSALONIANS 5:16–18", text: "Rejoice always, pray continually, give thanks in all circumstances." },
+        { ref: "PSALM 100:4–5", text: "Enter his gates with thanksgiving and his courts with praise; give thanks to him and praise his name." },
+        { ref: "JAMES 1:17", text: "Every good and perfect gift is from above, coming down from the Father of the heavenly lights." },
+        { ref: "NEHEMIAH 8:10", text: "The joy of the LORD is your strength." },
+        { ref: "JOHN 15:11", text: "I have told you this so that my joy may be in you and that your joy may be complete." },
+        { ref: "COLOSSIANS 3:15–17", text: "Let the peace of Christ rule in your hearts, and be thankful." },
+        { ref: "PSALM 118:24", text: "This is the day the LORD has made; let us rejoice and be glad in it." },
+        { ref: "HABAKKUK 3:17–19", text: "Though the fig tree does not bud, yet I will rejoice in the LORD, I will be joyful in God my Savior." }
+      ]
+    },
+    {
+      name: "Love / Loneliness", emoji: "❤️",
+      quote: "You are loved even on the days you forget to feel it.",
+      song: { title: "Lonely", artist: "Justin Bieber & benny blanco" },
+      verses: [
+        { ref: "JOHN 3:16", text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." },
+        { ref: "ROMANS 8:38–39", text: "Neither death nor life will be able to separate us from the love of God." },
+        { ref: "1 JOHN 4:9–10", text: "This is how God showed his love among us: He sent his one and only Son into the world." },
+        { ref: "DEUTERONOMY 31:8", text: "The LORD himself goes before you and will be with you; he will never leave you nor forsake you." },
+        { ref: "HEBREWS 13:5", text: "Never will I leave you; never will I forsake you." },
+        { ref: "PSALM 27:10", text: "Though my father and mother forsake me, the LORD will receive me." },
+        { ref: "ISAIAH 49:15–16", text: "Can a mother forget the baby at her breast? I have engraved you on the palms of my hands." },
+        { ref: "ZEPHANIAH 3:17", text: "The LORD your God is with you. He will take great delight in you; he will rejoice over you with singing." },
+        { ref: "PSALM 139:7–10", text: "Where can I go from your Spirit? Where can I flee from your presence?" },
+        { ref: "JOHN 15:13", text: "Greater love has no one than this: to lay down one's life for one's friends." }
+      ]
+    }
+  ];
+
+  const charmList = document.getElementById('charm-list');
+  const moodLabel = document.getElementById('mood-label');
+  const verseText = document.getElementById('verse-text');
+  const verseRef = document.getElementById('verse-ref');
+  const lifeQuote = document.getElementById('life-quote');
+  const verseCard = document.getElementById('verse-card');
+  const songChip = document.getElementById('song-chip');
+  const anotherBtn = document.getElementById('another-btn');
+
+  let currentCategory = 0;
+
+  function pickRandomVerse(catIndex){
+    const cat = categories[catIndex];
+    const v = cat.verses[Math.floor(Math.random() * cat.verses.length)];
+
+    verseCard.style.opacity = 0;
+    setTimeout(()=>{
+      moodLabel.textContent = cat.name + ' ' + cat.emoji;
+      verseText.textContent = '“' + v.text + '”';
+      verseRef.textContent = v.ref;
+      lifeQuote.textContent = cat.quote;
+      songChip.textContent = '🎵 ' + cat.song.title + ' — ' + cat.song.artist;
+      verseCard.style.opacity = 1;
+    }, 180);
+  }
+
+  function selectCategory(i){
+    currentCategory = i;
+    pickRandomVerse(i);
+    document.querySelectorAll('.charm').forEach((el, idx)=>{
+      el.classList.toggle('active', idx === i);
+    });
+  }
+
+  categories.forEach((cat, i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'charm' + (i===0 ? ' active' : '');
+    btn.innerHTML = '<span>' + cat.emoji + '</span>' + cat.name;
+    btn.addEventListener('click', ()=> selectCategory(i));
+    charmList.appendChild(btn);
+  });
+
+  anotherBtn.addEventListener('click', ()=> pickRandomVerse(currentCategory));
+
+  selectCategory(0);
+</script>
+
+</body>
+</html>
